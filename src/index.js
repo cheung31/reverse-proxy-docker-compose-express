@@ -18,6 +18,7 @@ app.use(cookieSession({
 app.use(viewCountMiddleware);
 
 app.get('/', function (req, res) {
+  console.log(req.headers);
   res.send('<html><body><p>Hello from Node.js container ' + hostname + '</p><p>View count: ' + req.session.count + '</p></body></html>');
 });
 

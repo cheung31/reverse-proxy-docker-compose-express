@@ -18,6 +18,16 @@ services:
       dockerfile: Dockerfile.web
     networks:
       - default
+  mothership:
+    build:
+      context: ./
+      dockerfile: Dockerfile.mothership
+    networks:
+      - default
+    depends_on:
+      - web-a
+      - web-b
+      - web-c
   proxy:
     build:
       context: ./
@@ -25,6 +35,7 @@ services:
     networks:
       - default
     links:
+      - mothership
       - web-a
       - web-b
       - web-c

@@ -24,4 +24,11 @@ app.use(proxy('/web-c', {
     }
 }));
 
+app.use(proxy('/', {
+  target: 'http://mothership:5000',
+  pathRewrite: {
+    '^/mothership': ''
+  }
+}));
+
 app.listen(3000);

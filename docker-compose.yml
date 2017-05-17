@@ -1,0 +1,22 @@
+version: '2'
+services:
+  weba:
+    build:
+      context: ./
+      dockerfile: Dockerfile.web
+    networks:
+      - default
+    expose:
+      - "5000"
+  proxy:
+    build:
+      context: ./
+      dockerfile: Dockerfile.proxy
+    networks:
+      - default
+    links:
+      - weba
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"

@@ -1,13 +1,23 @@
 version: '2'
 services:
-  weba:
+  web-a:
     build:
       context: ./
       dockerfile: Dockerfile.web
     networks:
       - default
-    expose:
-      - "5000"
+  web-b:
+    build:
+      context: ./
+      dockerfile: Dockerfile.web
+    networks:
+      - default
+  web-c:
+    build:
+      context: ./
+      dockerfile: Dockerfile.web
+    networks:
+      - default
   proxy:
     build:
       context: ./
@@ -15,8 +25,8 @@ services:
     networks:
       - default
     links:
-      - weba
+      - web-a
+      - web-b
+      - web-c
     ports:
       - "3000:3000"
-    expose:
-      - "3000"
